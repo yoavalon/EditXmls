@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+
+namespace XmlConv
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {   
+
+            XDocument xmlFile = XDocument.Load("C:\\Test\\3.dat");
+            
+            var query = xmlFile.Elements("Mimshak").Elements("KoteretKovetz").Elements("NetuneiGoremSholech");
+            foreach (XElement book in query)
+            {            
+                book.Add(new XElement("MISPAR-ZIHUI-ETZEL-YATZRAN-NIMAAN","1"));  // new Value                
+            }
+
+            var queryTest = xmlFile.Elements("Mimshak").Elements("KoteretKovetz");
+
+            query = xmlFile.Elements("Mimshak").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka");
+            foreach (XElement book in query)
+            {
+                book.Add(new XElement("MISPAR-ZIHUI-PNIMI-ETZEL-YATZRAN", "123"));  // new Value
+            }
+
+            query = xmlFile.Elements("Mimshak").Elements("GufHamimshak").Elements("YeshutLakoachMeidaBsisi");
+            foreach (XElement book in query)
+            {
+                book.Add(new XElement("TAARICH-LEIDA", "123"));  // new Value
+            }
+
+            query = xmlFile.Elements("Mimshak").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("YeshutLakoachMeidaBsisi").Elements("Eirua").Elements("KodEirua").Elements("YipuiKoach").Elements("BakashatMefitzLeinianYipuiKoach");
+            foreach (XElement book in query)
+            {
+                book.Add(new XElement("NISPACH-D", "123"));  // new Value
+            }
+
+            query = xmlFile.Elements("Mimshak").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("YeshutLakoachMeidaBsisi").Elements("Eirua").Elements("KodEirua").Elements("YipuiKoach").Elements("BakashatMefitzLeinianYipuiKoach");
+            foreach (XElement book in query)
+            {
+                book.Add(new XElement("BITUL-ARSHAA"));  // new Value
+            }
+
+            query = xmlFile.Elements("Mimshak").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("GufHamimshak").Elements("YeshutGoremPoneLemislaka").Elements("YeshutLakoachMeidaBsisi").Elements("Eirua").Elements("KodEirua").Elements("mismachim").Elements("ZihuiShemMismachBeramatEirua");
+            foreach (XElement book in query)
+            {
+                book.Add(new XElement("ISHUR-MEMUCSHAV"));  // new Value
+            }
+
+            query = xmlFile.Elements("Mimshak").Elements("KoteretKovetz");
+
+            query = xmlFile.Elements("Mimshak").Elements("KoteretKovetz").Elements("MISPAR-GIRSAT-XML");
+            foreach (XElement book in query)
+            {
+                book.Value = "004";  // replace !!!    
+                //book.SetElementValue("MISPAR-GIRSAT-XMLSelect","004");
+            }
+
+                xmlFile.Save("C:\\Test\\4.dat");
+
+
+        }
+    }
+}
